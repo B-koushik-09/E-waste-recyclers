@@ -1,0 +1,849 @@
+/* General Styles */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Header Styles */
+header {
+  background: #4CAF50;
+  color: white;
+  padding: 20px 0;
+}
+
+header .logo {
+  font-size: 25px;
+  font-weight: bold;
+  text-align:left;
+  margin-top: 10px;
+}
+
+header nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: flex-end;
+}
+
+header nav ul li {
+  margin-left: 40px;
+}
+
+header nav ul li a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.cta-button {
+  background: #FF5722;
+  padding: 10px 20px;
+  border-radius: 5px;
+  color: white;
+  text-decoration: none;
+}
+
+/* Hero Section */
+.hero {
+  background: url('ewaste-hero.jpg') no-repeat center center;
+  background-size: contain; /* Ensures the entire image is visible */
+  height: 250px; /* Set a specific height */
+  width: 100%; /* Prevents it from expanding unexpectedly */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+  padding: 20px 0; /* Adjust padding if needed */
+  box-sizing: border-box;
+}
+
+
+
+.hero h1 {
+  font-size: 48px;
+  margin-bottom: 20px;
+  
+}
+
+.hero p {
+  font-size: 24px;
+  margin-bottom: 40px;
+}
+
+
+.hero {
+  min-height: 100vh; /* Full screen height */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+
+
+/* Features Section */
+.features {
+  padding: 60px 0;
+  text-align: center;
+}
+
+.features h2 {
+  font-size: 36px;
+  margin-bottom: 40px;
+}
+
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.feature-item {
+  background: #f9f9f9;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.feature-item i {
+  font-size: 40px;
+  color: #4CAF50;
+  margin-bottom: 20px;
+}
+
+/* How It Works Section */
+.how-it-works {
+  background: #4CAF50;
+  color: white;
+  padding: 60px 0;
+  text-align: center;
+}
+
+.how-it-works h2 {
+  font-size: 36px;
+  margin-bottom: 40px;
+}
+
+.steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.step {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.step span {
+  font-size: 36px;
+  font-weight: bold;
+  display: block;
+  margin-bottom: 10px;
+}
+
+/* Footer Styles */
+footer {
+  background: #333;
+  color: white;
+  padding: 40px 0;
+  text-align: center;
+}
+
+.footer-links {
+  margin-bottom: 20px;
+}
+
+.footer-links a {
+  color: white;
+  text-decoration: none;
+  margin: 0 10px;
+}
+
+.social-media a {
+  color: white;
+  font-size: 24px;
+  margin: 0 10px;
+}
+
+/* Login Page Styles */
+.login-form {
+  width: 100%;
+  max-width: 400px;
+  margin: 50px auto;
+  background: white;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.login-field {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 15px;
+}
+
+.login-label {
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.login-input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.login-btn {
+  background: #4CAF50;
+  color: white;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  padding: 10px 20px;
+  border-radius: 5px;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.login-btn:hover {
+  background: #45a049;
+}
+
+.login-btn a {
+  color: white;
+  text-decoration: none;
+  display: block;
+  width: 100%;
+}
+
+/* Register Page Styles */
+.register-form {
+  width: 100%;
+  max-width: 400px;
+  margin: 50px auto;
+  background: white;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+
+.register-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  border: 2px solid gold;
+  padding: 5px;
+}
+
+.register-field {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 30px;
+}
+
+.register-label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.register-input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.register-btn {
+  background: #4CAF50;
+  color: white;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  padding: 10px 20px;
+  border-radius: 5px;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.register-btn:hover {
+  background: #45a049;
+}
+
+.register-btn a {
+  color: white;
+  text-decoration: none;
+  display: block;
+  width: 100%;
+}
+
+
+/* Background Image for Home Page Only */
+.home-page {
+  background: url('E-Waste-Management-in-India.jpg') no-repeat center center fixed;
+  background-size: cover;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+
+/* Search Section */
+.search-section {
+  display: block;
+  justify-content: center; 
+  text-align: center;
+  margin: 100px auto;
+  width: 90%;
+  max-width: 600px;
+  background: rgba(255, 255, 255, 0.9);  
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  position: relative;
+  z-index: 2;
+ 
+}
+
+
+/* Background Image Below the Search */
+.background-section {
+  width: 100%;
+  height: 300px; /* Adjust height as needed */
+  background: url('ewaste-recycle-background.jpg') no-repeat center center;
+  background-size: cover;
+  margin-top: 20px;
+  position: relative;
+  z-index: 2;
+}
+
+ 
+.search-box {
+  display: flex;
+  justify-content: center; 
+  border: 2px solid #28a745;
+  border-radius: 20px;
+  overflow: hidden;
+  width: 100%;
+  max-width: 500px;
+  background: white;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  
+}
+
+ 
+.search-box input {
+  flex: 1;
+  padding: 15px 14px;  /* Reduced padding */
+  border: none;
+  outline: none;
+  font-size: 15px;  /* Smaller font size */
+  color: #333;
+  font-weight: bold;
+  border-radius: 20px 0 0 20px;
+  text-align: center;
+}
+
+ 
+.search-box .search-btn {
+  background: linear-gradient(45deg, #28a745, #218838);
+  color: white;
+  border: none;
+  padding: 10px 16px;  /* Reduced padding */
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 16px;  /* Smaller font size */
+  border-radius: 0 20px 20px 0;
+  transition: 0.3s;
+}
+
+.search-box .search-btn:hover {
+  background: linear-gradient(45deg, #218838, #1e7e34);
+  transform: scale(1.03);
+}
+
+/* Input Focus Effect */
+.search-box input:focus {
+  background: #f8f8f8;
+  box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.2);
+}
+
+
+/* Results Section */
+/* Results Container */
+#results-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px;
+}
+
+/* Individual Center Card */
+.center-card {
+  width: 45%; /* Adjust to fit 2 cards per row */
+  min-width: 350px;
+  background: white;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Center Info */
+.center-info {
+  text-align: left;
+}
+
+/* Distance */
+.distance {
+  float: right;
+  font-size: 14px;
+  color: green;
+}
+
+/* Buttons */
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+}
+
+.get-directions{
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  width: 50%;
+}
+.view-details {
+  width: 50%;
+}
+/* Green Get Directions Button */
+.get-directions {
+  background: #28a745;
+  color: white;
+  border: none;
+}
+
+.get-directions:hover {
+  background: #218838;
+}
+
+/* White View Details Button */
+.view-details-btn {
+  background: white;
+  border: 2px solid #28a745;
+  color: #28a745;
+  width:48%;
+  border-radius: 5px;
+  
+}
+
+.view-details-btn:hover {
+  background: #28a745;
+  color: green;
+}
+
+/* Unique styles for pickup details page */
+/* Container */
+.pickup-main-container {
+  max-width: 500px;
+  margin: auto;
+  padding: 20px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+/* Step Indicator */
+.step-indicator {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 20px;
+}
+
+.step {
+  padding: 10px;
+  border-bottom: 3px solid lightgray;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.step.active {
+  border-bottom: 3px solid green;
+  color: green;
+}
+
+/* Step Content */
+.step-content {
+  display: none;
+}
+
+.step-content h2 {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  margin-top: 10px;
+}
+
+input, select {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+}
+
+.pic-btn {
+  margin-top: 15px;
+  padding: 10px;
+  border: none;
+  background: green;
+  color: white;
+  cursor: pointer;
+}
+
+.pic-btn:hover {
+  background: darkgreen;
+}
+
+.center-card-buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px; /* Adds spacing between buttons */
+}
+
+.center-card-buttons button {
+  flex: 1; /* Each button takes up equal space */
+  padding: 10px;
+  border: none;
+  background: green;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.center-card-buttons button:hover {
+  background: darkgreen;
+}
+
+.pickup-step-indicator {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.pickup-step {
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  border: 2px solid #4CAF50;
+  background-color: #fff;
+  color: #4CAF50;
+  cursor: pointer;
+  margin: 0 5px;
+  border-radius: 5px;
+}
+
+.pickup-step.active {
+  background-color: #4CAF50;
+  color: white;
+}
+
+/* Step Content */
+.pickup-step-content {
+  background: #f9f9f9;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 80%;
+  margin: auto;
+}
+
+/* Standardized Input Fields */
+/* Standardized Input Fields */
+.pickup-step-content input,
+.pickup-step-content select,
+.pickup-step-content textarea {
+    width: 400px;  /* Same width for all */
+    height: 34.4px; /* Same height for all */
+    padding: 5px;   /* Consistent padding */
+    font-size: 16px; /* Readable text size */
+    border: 1px solid #ccc; /* Light border */
+    border-radius: 5px; /* Rounded edges */
+    outline: none; /* No default outline */
+    box-sizing: border-box; /* Prevents padding from affecting size */
+}
+
+
+.pickup-step-content input:focus,
+.pickup-step-content select:focus,
+.pickup-step-content textarea:focus {
+    border-color: #4CAF50;
+    box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+}
+
+.button-1 {
+  background: #28a745;  
+  color: white;  
+  border: none;
+  padding: 12px 24px; 
+  margin-top: 30px;
+  font-size: 16px;  
+  font-weight: bold;
+  border-radius: 8px;  
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  display: inline-block;
+  width: 100%; 
+  max-width: 200px; 
+  text-align: center;
+}
+
+/* Hover Effect */
+.button-1:hover {
+  background: #218838; /* Darker green */
+  transform: scale(1.05); /* Slightly enlarge */
+}
+
+/* Click Effect */
+.button-1:active {
+  background: #1e7e34; /* Even darker green */
+  transform: scale(0.98); /* Slight shrink */
+}
+
+/* Step 2 Container */
+.pickup-step-content {
+  background: #fff; /* White background */
+  padding: 20px;
+  border-radius: 10px; /* Smooth corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Soft shadow */
+  text-align: center;
+  max-width: 500px; /* Restrict width */
+  margin: auto; /* Center align */
+}
+
+/* Heading */
+.pickup-step-content h2 {
+  font-size: 22px;
+  color: #28a745; /* Green color */
+  margin-bottom: 15px;
+}
+
+/* Confirmed Details */
+.pickup-step-content p {
+  font-size: 18px;
+  color: #333;
+  background: #f8f9fa;  
+  padding: 10px;
+  border-radius: 5px;
+  margin: 5px 0;
+  font-weight: bold;
+}
+
+/* Buttons */
+.pickup-step-content button {
+  background: #007bff;  
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+  margin-top: 10px;
+}
+
+/* Hover Effect */
+.pickup-step-content button:hover {
+  background: #0056b3;  
+  transform: scale(1.05);
+}
+
+/* Back Button */
+.pickup-step-content .back-btn {
+  background: #dc3545; 
+}
+
+/* Confirm Button */
+.pickup-step-content .pickup-confirm-btn {
+  background: #28a745; 
+}
+
+/* Hover Effects */
+.pickup-step-content .back-btn:hover {
+  background: #b02a37;
+}
+
+.pickup-step-content .pickup-confirm-btn:hover {
+  background: #218838;
+}
+
+/* Buttons Container */
+.pickup-step-content button {
+  margin: 10px 5px; /* Adds space between buttons */
+}
+
+/* profile*/
+/* Profile Page Styling */
+.profile-header {
+  background: #28a745;
+  color: white;
+  padding: 15px;
+  text-align: center;
+}
+
+.profile-container {
+  width: 90%;
+  max-width: 600px;
+  margin: 30px auto;
+  padding: 20px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.profile-section {
+  margin-bottom: 20px;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.profile-btn {
+  background: #28a745;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.profile-btn:hover {
+  background: #218838;
+}
+
+.profile-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.profile-table th, .profile-table td {
+  padding: 10px;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+/* Logout Button Styling */
+.logout-container {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.logout-btn {
+  background: #dc3545; /* Red color */
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  transition: background 0.3s ease-in-out;
+}
+
+.logout-btn:hover {
+  background: #c82333; /* Darker red on hover */
+}
+
+.password-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.password-container input {
+  width: 100%;
+  height: 20px;  /* Ensure all input fields have the same height */
+  padding-right: 40px;  /* Space for the eye icon */
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.toggle-password {
+  position: absolute;
+  right: 10px;
+  cursor: pointer;
+  color: #777;
+  font-size: 18px;
+}
+
+
+.profile-btn {
+  background: linear-gradient(135deg, #4CAF50, #81C784);
+  border: none;
+  color: white;
+  padding: 12px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin-top: 10px;
+  border-radius: 30px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(76, 175, 80, 0.4);
+}
+
+.profile-btn:hover {
+  background: linear-gradient(135deg, #388E3C, #66BB6A);
+  box-shadow: 0 6px 20px rgba(76, 175, 80, 0.6);
+  transform: translateY(-2px);
+}
+
+.save-address-btn {
+  background: linear-gradient(135deg, #ff7e5f, #ed0808);
+  border: none;
+  color: white;
+  padding: 12px 30px;
+  font-size: 16px;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgb(12, 10, 10);
+  margin-top: 15px;
+}
+
+.save-address-btn:hover {
+  background: linear-gradient(135deg, #ff6a4d, #fd9e72);
+  box-shadow: 0 6px 20px rgba(255, 126, 95, 0.6);
+  transform: translateY(-2px);
+}

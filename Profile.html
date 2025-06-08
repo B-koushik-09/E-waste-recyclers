@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Profile - E-Waste Recycling Locator</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <div class="logo">E-Waste Recyclers</div>
+    <nav>
+      <ul>
+        <li><a href="home.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="profile.html" class="cta-button">Profile</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<div class="profile-container">
+  <h2>User Profile</h2>
+
+  <!-- User Details -->
+  <div class="profile-section">
+    <h3>Personal Details</h3>
+    <p><strong>Name:</strong> <span id="profileName">Loading...</span></p>
+    <p><strong>Email:</strong> <span id="profileEmail">Loading...</span></p>
+    <p><strong>Phone:</strong> <span id="profilePhone">Loading...</span></p>
+  </div>
+
+  <!-- Saved Pickup Addresses -->
+  <div class="profile-section">
+    <h3>Saved Addresses</h3>
+    <ul id="addressList">
+      <!-- Address items will be added here -->
+    </ul>
+
+    <!-- Hidden input form for adding new address -->
+    <div id="addressForm" style="display: none; margin-top: 10px;">
+      <input type="text" id="newAddressInput" placeholder="Enter new address" required />
+      <button class="save-address-btn" onclick="saveNewAddress()">Add</button>
+
+    </div>
+
+    <button class="profile-btn" onclick="showAddressForm()">Add New Address</button>
+  </div>
+
+  <!-- Pickup History -->
+  <div class="profile-section">
+    <h3>Pickup History</h3>
+    <table class="profile-table">
+      <thead>
+          <tr>
+              <th>Item</th>
+              <th>Quantity</th>
+              <th>Date</th>
+              <th>Time</th>
+              <th>Status</th>
+          </tr>
+      </thead>
+      <tbody id="pickupHistoryBody">
+          <!-- Dynamic rows will go here -->
+      </tbody>
+  </table>
+  
+  </div>
+
+  <!-- Change Password -->
+  <div class="profile-section">
+    <h3>Change Password</h3>
+    <input type="password" id="currentPassword" placeholder="Current Password" required>
+    <input type="password" id="newPassword" placeholder="New Password" required>
+    <button class="profile-btn" onclick="changePassword()">Update Password</button>
+  </div>
+
+  <div class="logout-container">
+    <button class="logout-btn" onclick="logout()">Logout</button>
+  </div>
+</div>
+
+<script>
+  // Load user details and addresses
+  function loadProfile() {
+    var loggedInEmail = localStorage.getItem("loggedInUser");
+
+    if (!loggedInEmail) {
+        alert("No user is logged in. Redirecting to login page.");
+        window.location.href = "login.html";
+        return;
+    }
+
+    var storedData = localStorage.getItem(loggedInEmail);
+    if (storedData) {
+        var userData = JSON.parse(storedData);
+        document.getElementById("profileName").innerText = userData.username;
+        document.getElementById("profileEmail").innerText = userData.email;
+        document.getElementById("profilePhone").innerText = userData.mobile;
+
+        if (userData.addresses && Array.isArray(userData.addresses)) {
+            userData.addresses.forEach(function (address) {
+                addAddressToList(address);
+            });
+        }
+
+        // Load dynamic pickup history
+        loadPickupHistory(userData);
+
+    } else {
+        alert("User data not found!");
+    }
+}
+
+
+  function showAddressForm() {
+    document.getElementById("addressForm").style.display = "block";
+  }
+
+  function saveNewAddress() {
+    var newAddress = document.getElementById("newAddressInput").value.trim();
+    if (newAddress === "") {
+      alert("Please enter an address.");
+      return;
+    }
+
+    var loggedInEmail = localStorage.getItem("loggedInUser");
+    var storedData = localStorage.getItem(loggedInEmail);
+    if (!storedData) {
+      alert("User data not found!");
+      return;
+    }
+
+    var userData = JSON.parse(storedData);
+    if (!userData.addresses) {
+      userData.addresses = [];
+    }
+
+    userData.addresses.push(newAddress);
+    localStorage.setItem(loggedInEmail, JSON.stringify(userData));
+
+    addAddressToList(newAddress);
+
+    // Reset form
+    document.getElementById("newAddressInput").value = "";
+    document.getElementById("addressForm").style.display = "none";
+  }
+
+  function addAddressToList(address) {
+    var list = document.getElementById("addressList");
+    var listItem = document.createElement("li");
+    listItem.textContent = address;
+    list.appendChild(listItem);
+  }
+
+  function changePassword() {
+    var loggedInEmail = localStorage.getItem("loggedInUser");
+    var currentPassword = document.getElementById("currentPassword").value;
+    var newPassword = document.getElementById("newPassword").value;
+
+    if (!loggedInEmail) {
+      alert("No user is logged in. Redirecting to login page.");
+      window.location.href = "login.html";
+      return;
+    }
+
+    var storedData = localStorage.getItem(loggedInEmail);
+    if (!storedData) {
+      alert("User data not found!");
+      return;
+    }
+
+    var userData = JSON.parse(storedData);
+
+    if (userData.password !== currentPassword) {
+      alert("Incorrect current password. Please try again.");
+      return;
+    }
+
+    userData.password = newPassword;
+    localStorage.setItem(loggedInEmail, JSON.stringify(userData));
+
+    alert("Password updated successfully!");
+    document.getElementById("currentPassword").value = "";
+    document.getElementById("newPassword").value = "";
+  }
+
+  function logout() {
+    localStorage.removeItem("loggedInUser");
+    window.location.href = "index.html";
+  }
+
+  loadProfile();
+
+  function loadPickupHistory(userData) {
+    const historyTable = document.getElementById("pickupHistoryBody");
+    historyTable.innerHTML = ""; // Clear existing rows
+
+    if (userData.pickupHistory && userData.pickupHistory.length > 0) {
+        userData.pickupHistory.forEach(function (pickup, index) {
+            // Check if date and time have passed
+            const pickupDateTime = new Date(pickup.date + "T" + pickup.time);
+            const now = new Date();
+
+            if (pickup.status === "Scheduled" && now >= pickupDateTime) {
+                pickup.status = "Completed";
+            }
+
+            const row = `<tr>
+                <td>${pickup.item}</td>
+                <td>${pickup.quantity}</td>
+                <td>${pickup.date}</td>
+                <td>${pickup.time}</td>
+                <td>${pickup.status}</td>
+            </tr>`;
+
+            historyTable.innerHTML += row;
+        });
+
+        // Save updated status back to localStorage
+        localStorage.setItem(localStorage.getItem("loggedInUser"), JSON.stringify(userData));
+    } else {
+        historyTable.innerHTML = "<tr><td colspan='5'>No pickup history found.</td></tr>";
+    }
+}
+
+</script>
+
+</body>
+</html>

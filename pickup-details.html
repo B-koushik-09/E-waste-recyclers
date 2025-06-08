@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pickup Details</title>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        function showStep(step) {
+            document.getElementById("pickupStep1").style.display = step === 1 ? "block" : "none";
+            document.getElementById("pickupStep2").style.display = step === 2 ? "block" : "none";
+            document.getElementById("pickupStep1Tab").classList.toggle("active", step === 1);
+            document.getElementById("pickupStep2Tab").classList.toggle("active", step === 2);
+
+            if (step === 2) {
+                let selectedItem = document.getElementById("pickupItem").value;
+                let otherItemInput = document.getElementById("pickupOtherItem").value;
+
+                if (selectedItem === "Other" && otherItemInput.trim() !== "") {
+                    document.getElementById("confirmItem").innerText = otherItemInput;
+                } else {
+                    document.getElementById("confirmItem").innerText = selectedItem;
+                }
+
+                document.getElementById("confirmQuantity").innerText = document.getElementById("pickupQuantity").value;
+                document.getElementById("confirmAddress").innerText = document.getElementById("pickupAddress").value;
+                document.getElementById("confirmDate").innerText = document.getElementById("pickupDate").value;
+                document.getElementById("confirmTime").innerText = document.getElementById("pickupTime").value;
+            }
+        }
+
+        function checkOtherItem() {
+            var itemDropdown = document.getElementById("pickupItem");
+            var otherItemDiv = document.getElementById("pickupOtherItemDiv");
+
+            if (itemDropdown.value === "Other") {
+                otherItemDiv.style.display = "block"; // Show text area
+            } else {
+                otherItemDiv.style.display = "none";  // Hide text area
+                document.getElementById("pickupOtherItem").value = ""; // Clear input when hidden
+            }
+        }
+    </script>
+</head>
+<body>
+
+    <header>
+        <div class="pickup-header-container">
+            <div class="pickup-logo">E-Waste Recyclers</div>
+        </div>
+    </header>
+
+    <div class="pickup-main-container">
+        <div class="pickup-step-indicator">
+            <span id="pickupStep1Tab" class="pickup-step active" onclick="showStep(1)">1. Enter Details</span>
+            <span id="pickupStep2Tab" class="pickup-step" onclick="showStep(2)">2. Confirm Details</span>
+        </div>
+
+        <!-- Step 1: Enter Details -->
+        <div id="pickupStep1" class="pickup-step-content">
+            <h2>Enter Pickup Details</h2>
+            <form>
+                <div class="pickup-item-dropdown">
+                    <label for="pickupItem">Item Name:</label>
+                    <select id="pickupItem" name="pickupItem" onchange="checkOtherItem()">
+                        <option value="">Select an item</option>
+                        <option value="Laptop">Laptop</option>
+                        <option value="Mobile Phone">Mobile Phone</option>
+                        <option value="Battery">Battery</option>
+                        <option value="TV">TV</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+                
+                <!-- Hidden Text Area for "Other" Option -->
+                <div id="pickupOtherItemDiv" style="display: none; margin-top: 10px;">
+                    <label for="pickupOtherItem">Enter Item Name:</label>
+                    <input type="text" id="pickupOtherItem" name="pickupOtherItem" placeholder="Enter item name">
+                </div>
+                <div class="side">
+                <label for="pickupQuantity">Quantity:</label>
+                <input type="number" id="pickupQuantity" min="5" value="5">
+
+
+                <label for="pickupAddress rows=4">Pickup Address:</label>
+                <textarea id="pickupAddress" rows="5"></textarea>
+
+                <label for="pickupDate">Date:</label>
+                <input type="date" id="pickupDate">
+
+                <label for="pickupTime">Time:</label>
+                <input type="time" id="pickupTime">
+            </div>
+                <button class="button-1" type="button" onclick="showStep(2)">Next</button>
+            </form>
+        </div>
+
+        <!-- Step 2: Confirm Details -->
+        <div id="pickupStep2" class="pickup-step-content" style="display: none;">
+            <h2>Confirm Pickup Details</h2>
+            <p><strong>Item Name:</strong> <span id="confirmItem"></span></p>
+            <p><strong>Quantity:</strong> <span id="confirmQuantity"></span></p>
+            <p><strong>Pickup Address:</strong> <span id="confirmAddress"></span></p>
+            <p><strong>Date:</strong> <span id="confirmDate"></span></p>
+            <p><strong>Time:</strong> <span id="confirmTime"></span></p>
+
+            <button type="button" onclick="showStep(1)">Back</button>
+            <button class="pickup-confirm-btn" type="button" onclick="confirmDetails()">Confirm</button>
+
+        </div>
+    </div>
+
+    <script>
+       function confirmDetails() {
+    var loggedInEmail = localStorage.getItem("loggedInUser");
+    if (!loggedInEmail) {
+        alert("No user is logged in.");
+        window.location.href = "login.html";
+        return;
+    }
+
+    var storedData = localStorage.getItem(loggedInEmail);
+    if (!storedData) {
+        alert("User data not found!");
+        return;
+    }
+
+    var userData = JSON.parse(storedData);
+
+    let selectedItem = document.getElementById("pickupItem").value;
+    let otherItemInput = document.getElementById("pickupOtherItem").value;
+    let itemName = selectedItem === "Other" && otherItemInput.trim() !== "" ? otherItemInput : selectedItem;
+
+    let pickupData = {
+        item: itemName,
+        quantity: document.getElementById("pickupQuantity").value,
+        address: document.getElementById("pickupAddress").value,
+        date: document.getElementById("pickupDate").value,
+        time: document.getElementById("pickupTime").value,
+        status: "Scheduled"
+    };
+
+    if (!userData.pickupHistory) {
+        userData.pickupHistory = [];
+    }
+
+    userData.pickupHistory.push(pickupData);
+    localStorage.setItem(loggedInEmail, JSON.stringify(userData));
+
+    alert("Details confirmed successfully!");
+    window.location.href = "home.html";
+}
+
+
+    </script>
+    
+</body>
+</html>

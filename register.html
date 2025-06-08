@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">E-Waste Recyclers</div>
+        </div>
+    </header>
+    
+    <form class="register-form" onsubmit="return registerUser()">
+        <div class="register-title">Sign up</div> 
+
+        <div class="register-field">
+            <label for="registerUsername" class="register-label">Username</label>
+            <input type="text" class="register-input" id="registerUsername" required>
+        </div>
+
+        <div class="register-field">
+            <label for="registerEmail" class="register-label">Email</label>
+            <input type="email" class="register-input" id="registerEmail" required>
+        </div>
+
+        <div class="register-field">
+            <label for="registerMobile" class="register-label">Mobile Number</label>
+            <input type="tel" class="register-input" id="registerMobile" pattern="[0-9]{10}" required placeholder="Enter 10-digit mobile number">
+        </div>
+
+        <div class="register-field">
+            <label for="registerPassword" class="register-label">Password</label>
+            <div class="password-container">
+                <input type="password" class="register-input" id="registerPassword" required>
+                <i class="fas fa-eye toggle-password" onclick="togglePassword('registerPassword', this)"></i>
+            </div>
+        </div>
+
+        <button type="submit" class="register-btn">Create Account</button>
+
+        <p>Already have an account? <a href="login.html">Log in</a></p>
+    </form>
+
+    <script>
+        function registerUser() {
+            var username = document.getElementById("registerUsername").value;
+            var email = document.getElementById("registerEmail").value;
+            var mobile = document.getElementById("registerMobile").value;
+            var password = document.getElementById("registerPassword").value;
+
+            if (localStorage.getItem(email)) {
+                alert("Email already registered! Please log in.");
+                return false;
+            }
+
+            if (!/^\d{10}$/.test(mobile)) {
+                alert("Please enter a valid 10-digit mobile number.");
+                return false;
+            }
+
+            var userData = {
+                username: username,
+                email: email,
+                mobile: mobile,
+                password: password
+            };
+
+            localStorage.setItem(email, JSON.stringify(userData));
+            alert("Account created successfully!");
+            window.location.href = "login.html";
+            return false;
+        }
+
+        function togglePassword(inputId, eyeIcon) {
+            var inputField = document.getElementById(inputId);
+            if (inputField.type === "password") {
+                inputField.type = "text";
+                eyeIcon.classList.remove("fa-eye");
+                eyeIcon.classList.add("fa-eye-slash");
+            } else {
+                inputField.type = "password";
+                eyeIcon.classList.remove("fa-eye-slash");
+                eyeIcon.classList.add("fa-eye");
+            }
+        }
+    </script>
+
+</body>
+</html>
